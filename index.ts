@@ -2,13 +2,17 @@ import { GraphQLServer } from 'graphql-yoga'
 import { createConnection } from "typeorm";
 import Query from './src/resolvers/query';
 import Mutation from './src/resolvers/mutation';
+import Player from './src/resolvers/player';
+import Match from './src/resolvers/match';
 import * as connectionOptions from "./ormConfig";
 
 const server = new GraphQLServer({
     typeDefs: './src/schema.graphql',
     resolvers: {
         Query,
-        Mutation
+        Mutation,
+        Player,
+        Match
     },
     context: req => {
       const { connection: { context = null } = {} } = req;

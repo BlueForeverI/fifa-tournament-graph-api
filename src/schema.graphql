@@ -1,17 +1,19 @@
 type Query {
-  players: [Player]
-}
-
-type Player {
-    id: String
-    firstName: String
-    lastName: String
-    teamLogoUrl: String
-    score: Int
+  players(where: PlayerCriteria): [Player],
+  player(id: String): Player,
+  matches: [Match]
 }
 
 type Mutation {
-  createPlayer(data: CreatePlayerInput): Player!
+  createPlayer(data: CreatePlayerInput): Player!,
+  deletePlayer(id: String): Player,
+  createMatch(data: CreateMatchInput): Match!
+}
+
+input PlayerCriteria {
+  firstName: String,
+  lastName: String,
+  score: Int
 }
 
 input CreatePlayerInput {
@@ -19,4 +21,30 @@ input CreatePlayerInput {
     lastName: String
     teamLogoUrl: String
     score: Int
+}
+
+input CreateMatchInput {
+  player1Id: String,
+  player2Id: String,
+  score1: Int,
+  score2: Int
+}
+
+type Player {
+    id: String
+    firstName: String
+    lastName: String
+    teamLogoUrl: String
+    score: Int,
+    matches: [Match]
+}
+
+type Match {
+  id: String,
+  player1Id: String,
+  player2Id: String,
+  score1: Int,
+  score2: Int,
+  player1: Player,
+  player2: Player
 }
