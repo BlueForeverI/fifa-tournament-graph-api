@@ -22,7 +22,7 @@
     "mongodb": "^3.4.1",
     "node-ts": "^5.0.3",
     "ts-node": "^8.5.4",
-    "typeorm": "^0.2.22",
+    "typeorm": "^0.2.25",
     "typescript": "^3.7.4"
   }
 }
